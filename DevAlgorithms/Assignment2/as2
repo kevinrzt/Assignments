@@ -1,0 +1,79 @@
+#include <stdio.h>
+void median(int A[],int n,int L[],int mid,int R[],int y);
+
+int main(void) {
+	int i,n,m,X[10],Y[10],Z[10];
+	printf("Enter the limit of 1st and 2nd arry");
+	scanf("%d",&n);
+	scanf("%d",&m);
+	printf("Enter first array");
+	for(i=0;i<n;i++)
+		{
+			scanf("%d",&X[i]);
+		}
+	printf("Enter second array\n");
+	for(i=0;i<m;i++)
+		{
+			scanf("%d",&Y[i]);
+		}
+		median(Z,(n+m),X,n,Y,m);
+
+	return 0;
+}
+
+void median(int Z[],int z,int X[],int x,int Y[],int y)
+{
+    int i=0,j=0,k=0;
+    int count=z;
+    while(i<x && j<y)
+    {
+        if(X[i]<Y[j])
+        {
+            Z[k]=X[i];
+            i++;
+            k++;
+        }
+        else if(X[i]>Y[j])
+        {
+            Z[k]=Y[j];
+            j++;
+            k++;
+        }
+        else
+        {
+        	Z[k]=Y[j];
+            j++;
+            k++;
+            i++;
+            count--;
+        }
+    }
+    while(i<x)
+    {
+         Z[k]=X[i];
+            i++;
+            k++;
+    }
+    while(j<(y))
+    {
+         Z[k]=Y[j];
+            j++;
+            k++;
+    }
+    
+    for(i=0;i<count;i++)
+		{
+		printf("%d  ",Z[i]);
+		}
+	if(count%2==0)
+	{	
+		float K=Z[(count/2)-1]+Z[(count/2)];
+		K=K/2;
+		printf("The medians is %f",K);
+	
+	}
+	else
+	{
+		printf("The only median is %d",Z[(count/2)]);
+	}
+}
