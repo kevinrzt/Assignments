@@ -1,0 +1,15 @@
+#!/bin/bash
+A="$1"
+X=$(date +%Y%m%d_%H%M%S)
+mkdir $X
+echo "$A"
+for ((i =1; i <= $(wc -l </home/kevinxavier/"$A") ;i++))
+do 
+if [ -d "$(awk 'NR=='$i'' /home/kevinxavier/"$A")" ]; then
+cp -R  $(awk 'NR=='$i'' /home/kevinxavier/"$A") /home/kevinxavier/"$X"
+echo " $(awk 'NR=='$i'' /home/kevinxavier/"$A") is sucessfully copied"
+else
+echo " $(awk 'NR=='$i'' /home/kevinxavier/"$A") is a invalid directory"
+fi
+done
+tar -czvf archive.tar.gz /home/kevinxavier/"$X"

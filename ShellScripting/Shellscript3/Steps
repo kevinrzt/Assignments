@@ -1,0 +1,20 @@
+Task 1
+Step 1: A new user was created with razorthink as name.
+Step 2: Password was deleted and made passwordless user
+Step 3: Visudo page was edited and privileges were given just to
+            sudo netstat -tulnp   
+            sudo ps -ef   
+            sudo df -h   
+            sudo fdisk -l  
+
+Task 2
+Step 1: Installed tiger in the system
+Step 2: Executed tiger and copied its contents into a file.
+Step 3: Mailed it to a address
+Step 4: These steps done in every 2 days using cron job
+
+Task 3
+Step 1: Installed Lynis
+Step 2: Executed Lynis.
+Step 3: Viewed the warnings and suggestions
+

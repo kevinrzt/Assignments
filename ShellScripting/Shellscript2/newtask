@@ -1,0 +1,32 @@
+#!/bin/bash
+A=$(pwd)  # in case no input diectory 
+echo "$A"
+C="$1"	#input filename
+A="$2"	#input directory
+cd "$A" # going into directory path
+echo "sucess $A"
+ls -RlSr>/home/kevinxavier/heavylog.txt # save to heavylog.txt the  sorted files in reverse order
+awk '{ print $5,$9 }' /home/kevinxavier/heavylog.txt>/home/kevinxavier/hlog.txt #copy name and size 
+sort -n /home/kevinxavier/hlog.txt>/home/kevinxavier/sortd.txt	#sort size wise again to update folder based sorting to universal sorting
+echo "the files displayed in ascending order "
+awk '{ print $2 }' /home/kevinxavier/sortd.txt # display sorted files
+awk -F' ' '{ if($5==0) { print $9 } }' /home/kevinxavier/heavylog.txt>/home/kevinxavier/h1log.txt # copy 0 size files into text file.
+echo "sucesss"
+#for loop to delete the zero files if requested
+for ((i =1; i <= $(wc -l </home/kevinxavier/h1log.txt) ;i++))
+do 
+echo "Do you want to delete this file?"
+find $PWD -type f -name "$(awk 'NR=='$i'' /home/kevinxavier/h1log.txt)" # finding the path
+echo "Enter y/n"
+read B
+if [ $B == 'y' ]
+then
+rm $(find $PWD -type f -name "$(awk 'NR=='$i'' /home/kevinxavier/h1log.txt)")	#removing the path
+
+else 
+echo "file is kept"
+fi
+done
+echo "$A/$C"
+[ -f "$A/$C" ] && mv "$A/$C" razorthink_$(echo "$A" | sed -r 's/[/]+/-/g')  && echo "task complete" # renaming the path if present in directory.
+

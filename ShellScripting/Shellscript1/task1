@@ -1,0 +1,6 @@
+#!/bin/bash
+X=$(date +%T%a%f%Z)
+mkdir $X
+cd /
+cd tmp
+mv test.txt /home/kevinxavier/$X 

@@ -1,0 +1,4 @@
+#!/bin/bash
+ps -e>PIDLOG.txt
+awk '{ print $1}' PIDLOG.txt>PIDFINAL.txt
+rm PIDLOG.txt
