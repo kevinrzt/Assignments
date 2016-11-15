@@ -1,0 +1,87 @@
+Assignment 1-Task 2
+
+Algorithm
+
+Step 1 : Start
+Step 2 : Read the limit n,array A in ascending order and the sum of numbers X to be searched.
+Step 3 : Iniliase 2 pointers,S and E,where S points to start and E points to n-1 and intialise f to 0.
+Step 4 : While S>E,do steps 4.3 to 4.8.
+Step 5 : Check if A[S]+A[E] is greater than X,if true goto step 4.4 else goto 4.5.
+Step 6 : Decrement E.
+Step 7 : Check if A[S]+A[E] is lesser than X,if true goto step 4.6 else goto 4.7.
+Step 8 : Increment S.
+Step 9 : Check if A[S]+A[E] is equal to X,if true goto step 4.8.
+Step 10: Print A[S] and A[E].Also decrement E.Assign f to 1.
+Step 11: Check if f=0.if true goto step 4.10.
+Step 12: Print "Invalid Sum Search"
+Step 13: End
+
+
+Code 
+
+#include <stdio.h>
+
+int main(void) {
+	int A[10];
+	int X,n,i,f=0;
+	int S=0;
+	int E=4;
+	printf("Enter the limit ");
+    scanf("%d",&n);
+    printf("%d\n",n);
+    printf("Enter the array\ ");
+    for (i=0;i<n;i++)
+    {
+        scanf("%d",&A[i]);
+    }
+        for (i=0;i<n;i++)
+    {
+        printf("%d ",A[i]);
+    }
+    printf("\n");
+    printf("Enter sum of numbers to be searched ");
+    scanf("%d",&X);
+    printf("%d\n",X);
+	while(S<E)
+	{
+	    if(A[S]+A[E] > X)
+	        {
+	            E--;
+	        }
+	    else if(A[S]+A[E] < X)
+	        {
+	            S++;
+	            
+	        }
+	   else
+	    {
+	   printf("%d %d \n",A[S],A[E]);
+	   E--;
+	   f=1;
+	    }
+	}
+
+
+	if(f==0)
+	{
+		printf("Invalid Sum Search");
+	}
+	
+
+	
+	return 0;
+}
+
+
+Output #1
+Enter the limit 10
+Enter the array 1 2 3 4 5 6 7 8 9 10 
+Enter sum of numbers to be searched 5
+1 4 
+2 3 
+
+Output #2
+Enter the limit 10
+Enter the array 1 2 3 4 5 6 7 8 9 10 
+Enter sum of numbers to be searched 10
+Invalid Sum Search

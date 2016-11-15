@@ -1,0 +1,159 @@
+Assignment 1-Task 1
+
+Algorithm
+
+Step 1: Start
+Step 2: Read the limit n,array A and the sum of numbers X to be searched.
+Step 3: Sort the input array using merge sort,so that complexity is O(nlogn).
+	Step 3.1:Define a function to split the arrays till the point where no more division is possible bby calling split again inside the 		function(recursively).
+	Step 3.2:Now compare between elements in respective levels and according to the ascending,write it back to upper level using a merge 		function. 
+Step 4: Now write a function to search the sum of numbers.
+	Step 4.1 : Iniliase 2 pointers,S and E,where S points to start and E points to n-1 and intialise f to 0.
+	Step 4.2 : While S>E,do steps 4.3 to 4.8.
+	Step 4.3 : Check if A[S]+A[E] is greater than X,if true goto step 4.4 else goto 4.5.
+	Step 4.4 : Decrement E.
+	Step 4.5 : Check if A[S]+A[E] is lesser than X,if true goto step 4.6 else goto 4.7.
+	Step 4.6 : Increment S.
+	Step 4.7 : Check if A[S]+A[E] is equal to X,if true goto step 4.8.
+	Step 4.8 : Print A[S] and A[E].Also decrement E.Assign f to 1.
+	Step 4.9 : Check if f=0.if true goto step 4.10.
+	Step 4.10: Print "Invalid Sum Search"
+Step 5: End
+
+
+Code
+
+#include <stdio.h>
+void splitt(int B[],int n);
+void mergee(int A[],int n,int L[],int mid,int R[],int y);
+void search(int A[],int X,int n);
+int main(void) {
+	int n,i,A[10],X;
+    printf("Enter the limit ");
+    scanf("%d",&n);
+    printf("%d\n",n);
+    printf("Enter the array\ ");
+    for (i=0;i<n;i++)
+    {
+        scanf("%d",&A[i]);
+    }
+        for (i=0;i<n;i++)
+    {
+        printf("%d ",A[i]);
+    }
+    printf("\n");
+    printf("Enter sum of numbers to be searched ");
+    scanf("%d",&X);
+    printf("%d\n",X);
+    splitt(A,n);
+   
+   printf("The Sorted array\n");
+    for(i=0;i<n;i++)
+    {
+        printf("%d ",A[i]);
+    }
+    
+    
+   printf("\n\n"); 
+    
+    search(A,X,n);
+	return 0;
+}
+
+void splitt(int B[],int n)
+{   if(n>1)
+	{int i,j,L[5],R[5];
+    int mid=(n/2);
+    for(i=0;i<mid;i++)
+    {
+        L[i]=B[i];
+    }
+    for(j=mid;j<n;j++)
+    {
+        R[j-mid]=B[j];
+    }
+    splitt(L,mid);
+    splitt(R,(j-mid));
+    mergee(B,n,L,mid,R,(j-mid));
+	}
+}
+
+void mergee(int A[],int n,int L[],int mid,int R[],int y)
+{
+    int i=0,j=0,k=0;
+    while(i<mid && j<y)
+    {
+        if(L[i]<R[j])
+        {
+            A[k]=L[i];
+            i++;
+            k++;
+        }
+        else
+        {
+            A[k]=R[j];
+            j++;
+            k++;
+        }
+    }
+    while(i<mid)
+    {
+         A[k]=L[i];
+            i++;
+            k++;
+    }
+    while(j<(y))
+    {
+         A[k]=R[j];
+            j++;
+            k++;
+    }
+}
+void search(int A[],int X,int n) {
+	int S=0,f=0;
+	int E=(n-1);
+	while(S<E)
+	{
+	    if(A[S]+A[E] > X)
+	        {
+	            E--;
+	        }
+	    else if(A[S]+A[E] < X)
+	        {
+	            S++;
+	            
+	        }
+	   else
+	    {
+	   printf("%d and %d \n",A[S],A[E]);
+	   E--;
+	   f=1;
+	    }
+	}
+	if(f==0)
+	{
+		printf("Invalid Sum Search");
+	}
+	
+	
+}
+
+Output #1
+Enter the limit 10
+Enter the array 15 10 20 5 35 12 13 8 32 72 
+Enter sum of numbers to be searched 25
+The Sorted array
+5 8 10 12 13 15 20 32 35 72 
+
+5 and 20 
+10 and 15 
+12 and 13 
+
+Output #2
+Enter the limit 10
+Enter the array 15 10 20 5 35 12 13 8 32 72 
+Enter sum of numbers to be searched 100
+The Sorted array
+5 8 10 12 13 15 20 32 35 72 
+
+Invalid Sum Search
