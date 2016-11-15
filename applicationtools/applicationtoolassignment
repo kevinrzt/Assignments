@@ -1,0 +1,26 @@
+The following were the steps followed in my assignment.
+Task 1
+Step 1: The repository was forked and cloned into the local directory.
+Step 2: Checkout to master.
+Step 3: Merged branch 2 with master.
+
+Task 2
+Step 1: The try to revert back the code was not successful.I was not able to clear the errors and move on.However I used a another method to bring the code back to “Scene 3 Good Commit” .
+Step 2: The command "git checkout <commit id > <file name>" was used.
+Step 3: The file was added, committed and pushed back on server.
+
+Task 3
+Step 1: A new branch "branch 4" was created.
+Step 2: Checked out to the new branch.
+Step 3: The master branch was merged with branch 4.
+
+Task 4
+Step 1: A text file named "Bad file" was createdin branch 4.
+Step 2: It was committed locally and was not pushed to the server,as per required.
+Step 3: Two files .gitignore was created and committed locally.
+
+Task 5
+Step 1: The working branch was made branch 4.
+Step 2: Then the file was reverted.
+Step 3: The other changes were pushed.
+
