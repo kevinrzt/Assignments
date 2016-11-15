@@ -1,0 +1,151 @@
+#include <stdio.h>
+int vili(int A[],int n,int cut,int pre,int ret);
+int findladder(int A[],int n);
+
+int main(void) {
+	int A[31]={0,0,0,19,0,3,0,  0,0,0,0,15,0,  0,0,0,0,-13,0,  -12,9,-12,0,0,0,  0,0,-26,0,0,0};
+	int S=1,D,count=0,snake=0,ladder=0,i,small=100;
+	while(S<30)
+	{
+	count++;
+	printf("Enter Dice  ");
+	scanf("%d",&D);
+	printf("%d",D);
+		if(A[S]==0)
+		{
+			S=S+D;
+			if(S>30)
+			{
+				S=S-D;
+			}
+		printf("\nYour position is %d\n",S);
+						
+			if(A[S]>0)
+			{
+			S=S+A[S];
+			printf("Congo!!You have reached bottom of a ladder which leads u to %d\n",S);
+			}
+			else if(A[S]<0) 
+			{
+			S=S+A[S];
+			printf("Bad luck.You have been eaten by a snake which pushes u down to %d\n",S);
+			}
+			
+		}
+
+	
+	}
+	printf("Congrats.You have won the game in %d throws \n",count);
+	int B[30],j=0,C[30],E[30],I;
+	for(i=0;i<31;i++)
+	{
+		if(A[i]>0)
+		{
+			B[j]=A[i];
+			C[j]=A[i]+i;
+			E[j]=i;
+			ladder++;
+			j++;
+		}
+		else if(A[i]<0)
+		{
+			snake++;
+		}
+		
+	}
+
+	printf("Number of Ladders is %d \nNumber of Snakes is %d\n",ladder,snake);
+	int cut,n,pre,L,FG[30],ret=0;
+	cut=0,n=1,pre=0;
+			//for(I=0;I<30;I++)
+			//{printf("%d**",A[I] );
+			//}
+	for(i=0;i<ladder;i++)
+	{	
+	ret=0;
+	
+		
+	FG[L]=vili(A,n,cut,pre,ret);
+	L++;
+
+		A[E[i]]=0;
+	}
+		for(I=0;I<L;I++)
+			{if(FG[I]<small)
+			small=FG[I];
+			}
+	printf("Mininum number is %d",small);
+	return 0;
+}
+
+
+
+int findladder(int A[],int n)
+{	int i,L,f=0;
+	for(i=n;i<30;i++)
+	{
+		if(A[i]>0)
+		{
+			L=i;
+			f=1;
+			break;
+			
+		}
+		
+	}
+	if(f==0)
+		{
+			L=35;
+		}
+	return L;
+}
+
+
+int vili(int A[],int n,int cut,int pre,int ret)
+{	int lad,F,p,cut1;
+	
+	lad=findladder(A,n);
+	if(lad!=35)
+		{
+		F=(lad-n);
+		pre=A[lad]+lad;
+		p=pre;
+		
+		
+		if(F%6!=0)
+			{
+			cut=cut+(F/6)+1;
+			
+			}
+		else
+			{
+			cut=cut+(F/6);
+			
+			}
+			
+	
+		cut=vili(A,(A[lad]+lad),cut,pre,ret);
+
+		cut=cut+ret;
+		
+		}
+	else
+		{
+		if((30-pre)%6!=0)
+			{cut=cut+((30-pre)/6)+1;
+		
+			}
+			
+		else
+			{
+				cut=cut+((30-pre)/6);
+		
+			}
+		}
+	
+	
+	return cut;
+
+}
+
+
