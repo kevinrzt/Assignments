@@ -1,0 +1,13 @@
+select actor.actorid,concat(actor.firstname,' ',actor.lastname) as 'Actor',director.directorid,concat(director.firstname,' ',director.lastname) as 'Director'
+from movie
+inner join director
+on
+movie.directorid=director.directorid
+inner join role
+on
+role.movieid=movie.movieid
+inner join actor
+on 
+role.actorid=actor.actorid
+group by director.firstname,actor.firstname
+having count(*)>1;

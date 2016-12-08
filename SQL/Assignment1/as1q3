@@ -1,0 +1,10 @@
+use mov;
+select genre.genrename,sum(if(movie.year=1994,1,0)) as '1994',
+sum(if(movie.year=2016,1,0)) as '2016',
+sum(if(movie.year=2015,1,0)) as '2015',
+sum(if(movie.year=2012,1,0)) as '2012',
+sum(if(movie.year=2006,1,0)) as '2006'
+from movie
+inner join genre
+on genre.genreid=movie.genreid
+group by genre.genreid;

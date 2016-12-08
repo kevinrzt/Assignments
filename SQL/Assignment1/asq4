@@ -1,0 +1,21 @@
+use mov;
+drop table kkk;
+create temporary table kkk(movieid int,title varchar(100));
+insert into kkk
+select movie.movieid,movie.title
+from movie
+inner join role
+on movie.movieid=role.movieid
+inner join actor
+on actor.actorid=role.actorid
+where actor.actorid=3;
+
+select actor.actorid  AS 'Actor Id', concat(actor.firstname, " ",actor.lastname) AS 'Actor',actor.gender as Gender,count(actor.firstname)AS 'No of films together'
+from kkk
+inner join role
+on role.movieid=kkk.movieid
+inner join actor
+on actor.actorid=role.actorid
+where actor.actorid!=3
+group by actor.firstname
+order by count(actor.firstname) desc;

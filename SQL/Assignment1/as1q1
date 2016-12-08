@@ -1,0 +1,10 @@
+select	movie.title,group_concat(concat(actor.firstname," ",actor.lastname))
+from role
+inner join movie
+on
+movie.movieid=role.movieid
+inner join actor
+on
+actor.actorid=role.actorid
+where  movie.year=1994
+group by movie.title;
