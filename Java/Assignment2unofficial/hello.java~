@@ -1,0 +1,46 @@
+package techm.itp.hydbatch1.cs/ncs517.kevin
+
+public class Greeter
+{
+	private String name;
+    	public Greeter()
+    		{
+        	name="kevin";
+  		}
+	public void readName(String name)
+		{
+		this.name=name;		
+		}
+	
+	public void sayHello()
+		{
+		System.out.println("Hello, "+this.name);
+		}
+	public void sayGoodBye()
+		{
+		System.out.println("Good Bye,, "+this.name);
+		}
+
+}
+
+public class Advisor
+{
+	private String[] M;
+	
+
+	public Advisor()
+		{
+		M[1]="Have the courage to live a life true to yourself, not the life others expect of you.";
+		M[2]="Never attribute to malice that which can be adequately explained by stupidity.";
+		M[3]="Don’t make decisions when you’re angry. Don’t make promises when you’re happy.";
+		M[4]="Only pack what you can carry yourself.";
+		M[0]="Remember you’ll always regret what you didn’t do rather than what you did.";
+		}
+	public void getAdvice()
+		{
+		Random rand = new Random();
+                int  n = rand.nextInt(4) + 0;
+		System.out.println("Advice: "+M[n]);
+		}
+}
+
